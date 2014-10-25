@@ -23,6 +23,7 @@ sudo apt-get update
 
 clear
 
+
 echo "正在配置vim"
 echo -e 'set number\nset expandtab\nset tabstop=4' >> ~/.vimrc
 echo "完成配置vim!!"
@@ -168,6 +169,13 @@ read -p "按回车键继续..."
 fi
 
 clear
+
+echo -e "安装hosts"
+curl https://raw.githubusercontent.com/txthinking/google-hosts/master/hosts > ~/Downloads/hosts
+sudo mv /etc/hosts /etc/hosts.bak
+sudo cp -f ~/Downloads/hosts /etc/hosts
+echo -e "hosts安装完成！"
+
 
 echo
 echo "将终端快捷方式加入右键菜单!"
