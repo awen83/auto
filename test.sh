@@ -10,12 +10,13 @@
 #fi
 
 cd ~/
-sudo mkdir /usr/lib/jvm
-sudo mv jdk1.6.0_26 /usr/lib/jvm/
-sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk1.6.0_26/bin/java 1
-sudo update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/jdk1.6.0_26/bin/javac 1
-sudo update-alternatives --install /usr/bin/javaws javaws /usr/lib/jvm/jdk1.6.0_26/bin/javaws 1
-sudo update-alternatives --install /usr/bin/jar jar /usr/lib/jvm/jdk1.6.0_26/bin/jar 1
-sudo update-alternatives --install /usr/bin/javadoc javadoc /usr/lib/jvm/jdk1.6.0_26/bin/javadoc 1
+echo
+echo "安装 openjdk-7-jdk!"
+echo
+sudo apt-get update
+sudo apt-get install openjdk-7-jdk
+sudo update-alternatives --config java
+sudo update-alternatives --config javac
+cd ~/
 java -version
 cd ~/
