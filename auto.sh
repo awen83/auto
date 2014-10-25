@@ -125,12 +125,16 @@ clear
 echo
 echo "安装其他要求资源包!"
 echo
-sudo apt-get install git-core gnupg flex bison gperf build-essential \
-zip curl zlib1g-dev libc6-dev libncurses5-dev x11proto-core-dev \
-libx11-dev libreadline6-dev libgl1-mesa-dev tofrodos python-markdown \
-libxml2-utils xsltproc pngcrush gcc-multilib lib32z1 schedtool \
-libqt4-dev lib32stdc++6 libx11-dev:i386 g++-multilib lib32z1-dev \
-lib32ncurses5-dev ia32-libs mingw32 lib32z-dev $PARAM
+sudo apt-get update
+sudo apt-get install git gnupg flex bison gperf build-essential \
+zip curl libc6-dev libncurses5-dev:i386 x11proto-core-dev \
+libx11-dev:i386 libreadline6-dev:i386 libgl1-mesa-glx:i386 \
+libgl1-mesa-dev g++-multilib mingw32 tofrodos \
+python-markdown libxml2-utils xsltproc zlib1g-dev:i386 \
+android-tools-adb android-tools-fastboot libcloog-isl-dev \
+texinfo gcc-multilib schedtool libxml2-utils libxml2 $PARAM
+
+sudo ln -s /usr/lib/i386-linux-gnu/mesa/libGL.so.1 /usr/lib/i386-linux-gnu/libGL.so
 
 if [ ${SKIP} = 1 ]; then
 echo "无人值守安装. 按任意键暂停..."
@@ -157,8 +161,13 @@ echo
 if [ ! -d ~/bin ]; then
   mkdir -p ~/bin
 fi
-curl http://commondatastorage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+cp -arf repo ~/bin/repo
 chmod a+x ~/bin/repo
+
+echo
+echo "安装 Hosts"
+echo
+sudo cp -arf hosts /etc/hosts
 
 echo
 echo "安装 ADB 驱动!"
@@ -177,14 +186,14 @@ if [ `getconf LONG_BIT` = "64" ]
 then
 echo
 echo "正在下载 Linux 64位 系统的Android SDK"
-        wget http://dl.google.com/android/adt/adt-bundle-linux-x86_64-20131030.zip
+        wget http://dl.google.com/android/adt/adt-bundle-linux-x86_64-20140702.zip
 echo "下载完成!!"
 echo "展开文件"
 	mkdir ~/adt-bundle
-        mv adt-bundle-linux-x86_64-20131030.zip ~/adt-bundle/adt_x64.zip
+        mv adt-bundle-linux-x86_64-20140702.zip ~/adt-bundle/adt_x64.zip
         cd ~/adt-bundle
         unzip adt_x64.zip
-        mv -f adt-bundle-linux-x86_64-20131030/* .
+        mv -f adt-bundle-linux-x86_64-20140702/* .
 echo "正在配置"
         echo -e '\n# Android tools\nexport PATH=${PATH}:~/adt-bundle/sdk/tools\nexport PATH=${PATH}:~/adt-bundle/sdk/platform-tools\nexport PATH=${PATH}:~/bin' >> ~/.bashrc
         echo -e '\nPATH="$HOME/adt-bundle/sdk/tools:$HOME/adt-bundle/sdk/platform-tools:$PATH"' >> ~/.profile
@@ -193,14 +202,14 @@ else
 
 echo
 echo "正在下载 Linux 32位 系统的Android SDK"
-        wget http://dl.google.com/android/adt/adt-bundle-linux-x86-20131030.zip
+        wget http://dl.google.com/android/adt/adt-bundle-linux-x86-20140702.zip
 echo "下载完成!!"
 echo "展开文件"
         mkdir ~/adt-bundle
-        mv adt-bundle-linux-x86-20131030.zip ~/adt-bundle/adt_x86.zip
+        mv adt-bundle-linux-x86-20140702.zip ~/adt-bundle/adt_x86.zip
         cd ~/adt-bundle
         unzip adt_x86.zip
-        mv -f adt-bundle-linux-x86_64-20131030/* .
+        mv -f adt-bundle-linux-x86_64-20140702/* .
 echo "正在配置"
         echo -e '\n# Android tools\nexport PATH=${PATH}:~/adt-bundle/sdk/tools\nexport PATH=${PATH}:~/adt-bundle/sdk/platform-tools\nexport PATH=${PATH}:~/bin' >> ~/.bashrc
         echo -e '\nPATH="$HOME/adt-bundle/sdk/tools:$HOME/adt-bundle/sdk/platform-tools:$PATH"' >> ~/.profile
@@ -245,8 +254,8 @@ rm -Rf ~/Downloads/make-3.82
 rm -f ~/jdk-6u45-linux-x64.bin
 rm -f ~/Downloads/ccache-3.1.9.tar.gz
 rm -Rf ~/Downloads/ccache-3.1.9
-rm -Rf ~/adt-bundle/adt-bundle-linux-x86_64-20131030
-rm -Rf ~/adt-bundle/adt-bundle-linux-x86-20131030
+rm -Rf ~/adt-bundle/adt-bundle-linux-x86_64-20140702
+rm -Rf ~/adt-bundle/adt-bundle-linux-x86-20140702
 rm -f ~/adt-bundle/adt_x64.zip
 rm -f ~/adt-bundle/adt_x86.zip
 rm -f ~/Downloads/master.zip
