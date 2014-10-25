@@ -1,4 +1,5 @@
 #!/bin/bash
+#use like this:  ./auto.sh --auto 2>&1 | tee build.log
 
 export JOBS=`nproc`;
 
