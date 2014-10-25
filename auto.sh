@@ -22,6 +22,12 @@ sudo apt-get update
 
 clear
 
+echo "正在配置vim"
+echo -e 'set number\nset expandtab\nset tabstop=4' >> ~/.vimrc
+echo "完成配置vim!!"
+
+clear
+
 echo
 echo "进入下载目录"
 echo
@@ -42,7 +48,8 @@ echo
 echo "安装 Python!"
 echo
 sudo apt-get install build-essential gcc $PARAM
-wget http://www.python.org/ftp/python/3.3.2/Python-3.3.2.tgz
+#if file is there
+#wget http://www.python.org/ftp/python/3.3.2/Python-3.3.2.tgz
 tar -xvzf Python-3.3.2.tgz
 cd ~/Downloads/Python-3.3.2
 ./configure --prefix=/usr/local/python3.3
@@ -62,7 +69,8 @@ clear
 echo
 echo "安装 CCache!"
 echo
-wget http://www.samba.org/ftp/ccache/ccache-3.1.9.tar.gz
+#if file is there
+#wget http://www.samba.org/ftp/ccache/ccache-3.1.9.tar.gz
 tar -xvzf ccache-3.1.9.tar.gz
 cd ~/Downloads/ccache-3.1.9
 ./configure
@@ -83,7 +91,8 @@ clear
 echo
 echo "安装 GNU Make!"
 echo
-wget http://ftp.gnu.org/gnu/make/make-3.82.tar.gz
+#if file is there
+#wget http://ftp.gnu.org/gnu/make/make-3.82.tar.gz
 tar -xvzf make-3.82.tar.gz
 cd ~/Downloads/make-3.82
 ./configure
@@ -101,16 +110,18 @@ clear
 echo
 echo "安装 JDK 6!"
 echo
-wget  --no-check-certificate --no-cookies --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com" "http://download.oracle.com/otn-pub/java/jdk/6u45-b06/jdk-6u45-linux-x64.bin"
-chmod +x jdk-6u45-linux-x64.bin
-sudo ./jdk-6u45-linux-x64.bin
+#wget  --no-check-certificate --no-cookies --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com" "http://download.oracle.com/otn-pub/java/jdk/6u45-b06/jdk-6u45-linux-x64.bin"
+#chmod +x jdk-6u45-linux-x64.bin
+cp ~/Downloads/jdk-6u26-linux-i586.bin ~/
+chmod +x jdk-6u26-linux-i586.bin
+./jdk-6u26-linux-i586.bin
 sudo mkdir /usr/lib/jvm
-sudo mv jdk1.6.0_45 /usr/lib/jvm/
-sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk1.6.0_45/bin/java 1
-sudo update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/jdk1.6.0_45/bin/javac 1
-sudo update-alternatives --install /usr/bin/javaws javaws /usr/lib/jvm/jdk1.6.0_45/bin/javaws 1
-sudo update-alternatives --install /usr/bin/jar jar /usr/lib/jvm/jdk1.6.0_45/bin/jar 1
-sudo update-alternatives --install /usr/bin/javadoc javadoc /usr/lib/jvm/jdk1.6.0_45/bin/javadoc 1
+sudo mv jdk1.6.0_26 /usr/lib/jvm/
+sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk1.6.0_26/bin/java 1
+sudo update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/jdk1.6.0_26/bin/javac 1
+sudo update-alternatives --install /usr/bin/javaws javaws /usr/lib/jvm/jdk1.6.0_26/bin/javaws 1
+sudo update-alternatives --install /usr/bin/jar jar /usr/lib/jvm/jdk1.6.0_26/bin/jar 1
+sudo update-alternatives --install /usr/bin/javadoc javadoc /usr/lib/jvm/jdk1.6.0_26/bin/javadoc 1
 java -version
 cd ~/
 
@@ -132,7 +143,8 @@ libx11-dev:i386 libreadline6-dev:i386 libgl1-mesa-glx:i386 \
 libgl1-mesa-dev g++-multilib mingw32 tofrodos \
 python-markdown libxml2-utils xsltproc zlib1g-dev:i386 \
 android-tools-adb android-tools-fastboot libcloog-isl-dev \
-texinfo gcc-multilib schedtool libxml2-utils libxml2 $PARAM
+texinfo gcc-multilib schedtool libxml2-utils libxml2 \
+schedtool optipng pngcrush pngquant vim $PARAM
 
 sudo ln -s /usr/lib/i386-linux-gnu/mesa/libGL.so.1 /usr/lib/i386-linux-gnu/libGL.so
 
@@ -161,13 +173,14 @@ echo
 if [ ! -d ~/bin ]; then
   mkdir -p ~/bin
 fi
-cp -arf repo ~/bin/repo
+cp -arf ~/auto-build/auto/repo ~/bin/repo
 chmod a+x ~/bin/repo
+echo "安装 Repo ok!"
 
-echo
-echo "安装 Hosts"
-echo
-sudo cp -arf hosts /etc/hosts
+#echo
+#echo "安装 Hosts"
+#echo
+#sudo cp -arf hosts /etc/hosts
 
 echo
 echo "安装 ADB 驱动!"
@@ -185,15 +198,18 @@ sudo apt-get install unzip $PARAM
 if [ `getconf LONG_BIT` = "64" ]
 then
 echo
-echo "正在下载 Linux 64位 系统的Android SDK"
-        wget http://dl.google.com/android/adt/adt-bundle-linux-x86_64-20140702.zip
-echo "下载完成!!"
+#echo "正在下载 Linux 64位 系统的Android SDK"
+#        wget http://dl.google.com/android/adt/adt-bundle-linux-x86_64-20140702.zip
+#echo "下载完成!!"
+cp -rfv ~/Downloads/adt-bundle-linux-x86_64-20140702.zip ~/
+echo "sdk zip is there!"
 echo "展开文件"
 	mkdir ~/adt-bundle
         mv adt-bundle-linux-x86_64-20140702.zip ~/adt-bundle/adt_x64.zip
         cd ~/adt-bundle
         unzip adt_x64.zip
-        mv -f adt-bundle-linux-x86_64-20140702/* .
+#        mv -f adt-bundle-linux-x86_64-20140702/* .
+        mv -f adt-bundle/* .
 echo "正在配置"
         echo -e '\n# Android tools\nexport PATH=${PATH}:~/adt-bundle/sdk/tools\nexport PATH=${PATH}:~/adt-bundle/sdk/platform-tools\nexport PATH=${PATH}:~/bin' >> ~/.bashrc
         echo -e '\nPATH="$HOME/adt-bundle/sdk/tools:$HOME/adt-bundle/sdk/platform-tools:$PATH"' >> ~/.profile
@@ -228,13 +244,14 @@ echo
 echo "安装 安卓厨房"
 echo
 cd ~/Downloads
-wget https://github.com/dsixda/Android-Kitchen/archive/master.zip
+#if file is there
+#wget https://github.com/dsixda/Android-Kitchen/archive/master.zip
 unzip master.zip
 mv -f Android-Kitchen-master ~/Android-Kitchen
 echo -e '\n#!/bin/bash\ncd ~/Android-Kitchen\n./menu' >> ~/Android-Kitchen/kitchen
 chmod 755 ~/Android-Kitchen/kitchen
 ln -s ~/Android-Kitchen/kitchen ~/bin/kitchen
-ln -s ~/Android-Kitchen/kitchen ~/桌面/安卓厨房
+ln -s ~/Android-Kitchen/kitchen ~/Desktop/kitchen
 
 if [ ${SKIP} = 1 ]; then
 echo "无人值守安装. 按任意键暂停..."
@@ -244,21 +261,21 @@ fi
 
 clear
 
-echo
-echo "清除临时文件..."
-echo
-rm -f ~/Downloads/Python-3.3.2.tgz
-sudo rm -rf ~/Downloads/Python-3.3.2
-rm -f ~/Downloads/make-3.82.tar.gz
-rm -Rf ~/Downloads/make-3.82
-rm -f ~/jdk-6u45-linux-x64.bin
-rm -f ~/Downloads/ccache-3.1.9.tar.gz
-rm -Rf ~/Downloads/ccache-3.1.9
-rm -Rf ~/adt-bundle/adt-bundle-linux-x86_64-20140702
-rm -Rf ~/adt-bundle/adt-bundle-linux-x86-20140702
-rm -f ~/adt-bundle/adt_x64.zip
-rm -f ~/adt-bundle/adt_x86.zip
-rm -f ~/Downloads/master.zip
+#echo
+#echo "清除临时文件..."
+#echo
+#rm -f ~/Downloads/Python-3.3.2.tgz
+#sudo rm -rf ~/Downloads/Python-3.3.2
+#rm -f ~/Downloads/make-3.82.tar.gz
+#rm -Rf ~/Downloads/make-3.82
+#rm -f ~/jdk-6u45-linux-x64.bin
+#rm -f ~/Downloads/ccache-3.1.9.tar.gz
+#rm -Rf ~/Downloads/ccache-3.1.9
+#rm -Rf ~/adt-bundle/adt-bundle-linux-x86_64-20140702
+#rm -Rf ~/adt-bundle/adt-bundle-linux-x86-20140702
+#rm -f ~/adt-bundle/adt_x64.zip
+#rm -f ~/adt-bundle/adt_x86.zip
+#rm -f ~/Downloads/master.zip
 
 clear
 
