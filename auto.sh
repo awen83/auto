@@ -108,33 +108,34 @@ fi
 
 clear
 
-#echo
-#echo "安装 JDK 6!"
-#echo
+echo
+echo "安装 JDK 6!"
+echo
 #wget  --no-check-certificate --no-cookies --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com" "http://download.oracle.com/otn-pub/java/jdk/6u45-b06/jdk-6u45-linux-x64.bin"
-#chmod +x jdk-6u45-linux-x64.bin
+cd ~/Downloads
+chmod +x jdk-6u45-linux-x64.bin
 #cp ~/Downloads/jdk-6u26-linux-i586.bin ~/
 #chmod +x jdk-6u26-linux-i586.bin
-#./jdk-6u26-linux-i586.bin
-#sudo mkdir /usr/lib/jvm
-#sudo mv jdk1.6.0_26 /usr/lib/jvm/
-#sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk1.6.0_26/bin/java 1
-#sudo update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/jdk1.6.0_26/bin/javac 1
-#sudo update-alternatives --install /usr/bin/javaws javaws /usr/lib/jvm/jdk1.6.0_26/bin/javaws 1
-#sudo update-alternatives --install /usr/bin/jar jar /usr/lib/jvm/jdk1.6.0_26/bin/jar 1
-#sudo update-alternatives --install /usr/bin/javadoc javadoc /usr/lib/jvm/jdk1.6.0_26/bin/javadoc 1
-#java -version
-#cd ~/
-
-echo
-echo "安装 openjdk-7-jdk!"
-echo
-sudo apt-get update
-sudo apt-get install openjdk-7-jdk
-sudo update-alternatives --config java
-sudo update-alternatives --config javac
-cd ~/
+sudo ./jdk-6u45-linux-x64.bin
+sudo mkdir /usr/lib/jvm
+sudo mv jdk1.6.0_45 /usr/lib/jvm/
+sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk1.6.0_45/bin/java 1
+sudo update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/jdk1.6.0_45/bin/javac 1
+sudo update-alternatives --install /usr/bin/javaws javaws /usr/lib/jvm/jdk1.6.0_45/bin/javaws 1
+sudo update-alternatives --install /usr/bin/jar jar /usr/lib/jvm/jdk1.6.0_45/bin/jar 1
+sudo update-alternatives --install /usr/bin/javadoc javadoc /usr/lib/jvm/jdk1.6.0_45/bin/javadoc 1
 java -version
+cd ~/
+
+#echo
+#echo "安装 openjdk-7-jdk!"
+#echo
+#sudo apt-get update
+#sudo apt-get install openjdk-7-jdk
+#sudo update-alternatives --config java
+#sudo update-alternatives --config javac
+#cd ~/
+#java -version
 
 
 if [ ${SKIP} = 1 ]; then
