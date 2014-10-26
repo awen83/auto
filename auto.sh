@@ -176,6 +176,14 @@ sudo mv /etc/hosts /etc/hosts.bak
 sudo cp -f ~/Downloads/hosts /etc/hosts
 echo -e "hosts安装完成！"
 
+clear
+
+echo -e "配置swap"
+sudo echo -e 'vm.swappiness=0' >> /etc/sysctl.conf
+echo -e "配置swap完成！"
+
+clear
+
 
 echo
 echo "将终端快捷方式加入右键菜单!"
