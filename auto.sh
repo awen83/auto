@@ -159,7 +159,7 @@ libgl1-mesa-dev g++-multilib mingw32 tofrodos \
 python-markdown libxml2-utils xsltproc zlib1g-dev:i386 \
 android-tools-adb android-tools-fastboot libcloog-isl-dev \
 texinfo gcc-multilib schedtool libxml2-utils libxml2 \
-schedtool optipng pngcrush pngquant vim wine $PARAM
+schedtool optipng pngcrush pngquant vim wine openssh-server $PARAM
 
 sudo ln -s /usr/lib/i386-linux-gnu/mesa/libGL.so.1 /usr/lib/i386-linux-gnu/libGL.so
 
@@ -170,6 +170,13 @@ read -p "按回车键继续..."
 fi
 
 clear
+
+echo -e "配置ssh"
+sudo echo -e 'ServerAliveInterval 15\nTCPKeepAlive yes' >> /etc/ssh/ssh_config
+sudo echo -e 'ClientAliveInterval 300\nClientAliveCountMax 100000' >> /etc/ssh/sshd_config
+echo -e "配置ssh完成！"
+clear
+
 
 echo -e "安装hosts"
 curl https://raw.githubusercontent.com/txthinking/google-hosts/master/hosts > ~/Downloads/hosts
