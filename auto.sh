@@ -159,7 +159,7 @@ libgl1-mesa-dev g++-multilib mingw32 tofrodos \
 python-markdown libxml2-utils xsltproc zlib1g-dev:i386 \
 android-tools-adb android-tools-fastboot libcloog-isl-dev \
 texinfo gcc-multilib schedtool libxml2-utils libxml2 \
-schedtool optipng pngcrush pngquant vim wine openssh-server screen $PARAM
+schedtool optipng pngcrush pngquant vim wine openssh-server screen rar $PARAM
 
 sudo ln -s /usr/lib/i386-linux-gnu/mesa/libGL.so.1 /usr/lib/i386-linux-gnu/libGL.so
 
