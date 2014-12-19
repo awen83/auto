@@ -178,13 +178,6 @@ echo -e "配置ssh完成！"
 clear
 
 
-echo -e "安装hosts"
-curl https://raw.githubusercontent.com/txthinking/google-hosts/master/hosts > ~/Downloads/hosts
-sudo mv /etc/hosts /etc/hosts.bak
-sudo cp -f ~/Downloads/hosts /etc/hosts
-echo -e "hosts安装完成！"
-
-clear
 
 echo -e "配置swap"
 sudo echo -e 'vm.swappiness=0' >> /etc/sysctl.conf
@@ -295,6 +288,15 @@ echo "无人值守安装. 按任意键暂停..."
 else
 read -p "按回车键继续..."
 fi
+
+clear
+
+
+echo -e "安装hosts"
+curl https://raw.githubusercontent.com/txthinking/google-hosts/master/hosts > ~/Downloads/hosts
+sudo mv /etc/hosts /etc/hosts.bak
+sudo cp -f ~/Downloads/hosts /etc/hosts
+echo -e "hosts安装完成！"
 
 clear
 
